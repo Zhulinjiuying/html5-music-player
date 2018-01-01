@@ -50,7 +50,6 @@ var pageFunction = {
         for (let i = 0; i < musicData.length; i++) {
             template += t(i, musicData[i])
         }
-        log('template: ' + template)
         return template + `</div>`
 
     },
