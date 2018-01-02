@@ -1,3 +1,4 @@
+
 var router = function(event, page) {
     //路由函数
     if (event.target.className.indexOf('active') == -1) {    
@@ -5,6 +6,15 @@ var router = function(event, page) {
         // pushState(page, 'switch')
         // toggleMenu()
     }
+}
+
+var play = function(event) {
+    if (event.target.className.indexOf('pause') == -1) {
+        player.player.play()
+    } else {
+        player.player.pause()
+    }
+    toggleClass(event.target, 'pause')
 }
 
 var toggleMenu = function() {
@@ -111,9 +121,21 @@ var _main = function() {
         }
     ]
     localStorage.musicData = JSON.stringify(musicData)
+    window.player = new Player()
+    player.player.src = musicData[0].musicSrc
     e('.music-img').src = musicData[0].imgSrc
     e('.music-name p').innerText = musicData[0].musicName
-    e('audio').src = musicData[0].musicSrc
+    player.player.addEventListener("canplay", () => {
+        e('.end').innerText = player.transformTime(player.player.duration)
+    })
+    player.player.addEventListener('play', () => {
+        e('.start').innerText =  player.transformTime(player.player.currentTime)
+        setInterval(() => {
+            e('.start').innerText = player.transformTime(player.player.currentTime)
+            e('.now').style.width = (player.player.currentTime / player.player.duration).toFixed(3)*100 + '%'
+          }, 1000);
+    })
+    
     // initApp()
     // window.addEventListener("popstate", function(e) {
     //     var state = e.state;

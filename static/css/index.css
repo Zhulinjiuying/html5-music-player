@@ -185,4 +185,10 @@ body {
     margin: 20px 0 0 10px;
     background: url(./play.svg) no-repeat;
     background-size: contain;
+    cursor: pointer;
+}
+
+.footer .music-control .play-icon.pause {
+    background: url(./pause.svg) no-repeat;
+    background-size: contain;
 }
