@@ -111,6 +111,9 @@ var _main = function() {
         }
     ]
     localStorage.musicData = JSON.stringify(musicData)
+    e('.music-img').src = musicData[0].imgSrc
+    e('.music-name p').innerText = musicData[0].musicName
+    e('audio').src = musicData[0].musicSrc
     // initApp()
     // window.addEventListener("popstate", function(e) {
     //     var state = e.state;
