@@ -17,6 +17,28 @@ var play = function(event) {
     toggleClass(event.target, 'pause')
 }
 
+var changeTime = function(event) {
+    let progressBar = e('.progress-bar');
+    let coordStart = progressBar.getBoundingClientRect().left
+    let coordEnd = event.pageX
+    player.player.currentTime = (coordEnd - coordStart) / progressBar.offsetWidth * player.player.duration
+    // e('.now').innerText = player.transformTime(player.player.currentTime)
+    player.player.play();
+}
+  
+var touchMove = function(event) {
+    let progressBar = e('.progress-bar')
+    let coordStart = progressBar.getBoundingClientRect().left
+    let coordEnd = event.touches[0].pageX
+    e('.now').style.width = ((coordEnd - coordStart) / progressBar.offsetWidth).toFixed(3) * 100 + '%'
+}
+
+var touchEnd = function(event) {
+    player.player.currentTime = e('.now').style.width.replace('%', '')/100 * player.player.duration
+    // e('.now').innerText = player.transformTime(player.player.currentTime)
+    player.player.play()
+}
+
 var toggleMenu = function() {
     var menu = e('.item-list')
     toggleClass(menu, 'active')
