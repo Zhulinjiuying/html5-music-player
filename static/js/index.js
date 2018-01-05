@@ -157,6 +157,9 @@ var _main = function() {
             e('.now').style.width = (player.player.currentTime / player.player.duration).toFixed(3)*100 + '%'
           }, 1000);
     })
+    player.player.addEventListener('ended', () => {
+        toggleClass(e('.play-icon'), 'pause')
+    })
     
     // initApp()
     // window.addEventListener("popstate", function(e) {
