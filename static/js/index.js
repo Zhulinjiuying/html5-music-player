@@ -47,18 +47,16 @@ var toggleMenu = function() {
 var switchPage = function(page) {
     //切换页面
     var body = e('.main')
-    var target = 0
     var elements = es('.item')
-    for (let i = 0; i < pageList.length; i++) {
-        if (page === pageList[i]) {
-            body.innerHTML = pageFunction[page]()
-        }
-        elements[i].classList.add('active')
-    }    
     for (let i = 0; i < elements.length; i++) {
         removeClass(elements[i], 'active')
     }
-    
+    for (let i = 0; i < pageList.length; i++) {
+        if (page === pageList[i]) {
+            body.innerHTML = pageFunction[page]()
+            elements[i].classList.add('active')
+        }
+    }     
 }
 
 var pageList = ['list', 'find', 'detail']
