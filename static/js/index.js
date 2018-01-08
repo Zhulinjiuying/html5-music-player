@@ -68,7 +68,7 @@ var pageFunction = {
         var t = function(index, music) {
             var item = 
             `
-            <div class="music-item">
+            <div class="music-item" onclick="switchMusic(${index})">
                 <img src="${music.imgSrc}" class="music-img" />
                 <span class="music-name">${index + 1} ${music.musicName}</span>
                 <span class="del-icon"></span>
@@ -89,6 +89,13 @@ var pageFunction = {
     'detail': function() {
 
     }
+}
+
+var switchMusic = function(index) {
+    let musicData = JSON.parse(localStorage.musicData)
+    player.player.src = musicData[index].musicSrc
+    e('.footer .music-img').src = musicData[index].imgSrc
+    e('.footer .music-name p').innerText = musicData[index].musicName
 }
 
 var pushState = function(page, target) {
@@ -142,9 +149,7 @@ var _main = function() {
     ]
     localStorage.musicData = JSON.stringify(musicData)
     window.player = new Player()
-    player.player.src = musicData[0].musicSrc
-    e('.music-img').src = musicData[0].imgSrc
-    e('.music-name p').innerText = musicData[0].musicName
+    switchMusic(0)
     player.player.addEventListener("canplay", () => {
         e('.end').innerText = player.transformTime(player.player.duration)
     })
