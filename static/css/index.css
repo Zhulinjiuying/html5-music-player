@@ -122,12 +122,35 @@ body {
     background: #b72712;
 }
 
-.footer .music-img {
+.footer .img {
+    position: relative;
     display: inline-block;
-    width: 70px;
-    height: 70px;
-    margin: 5px 0 0 5px;
+    width: 80px;
+    height: 80px;
+}
+
+.footer .img .music-img {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    top: 8px;
+    left: 20px;
     border-radius: 50%;
+    animation: rotate 5s linear 0s infinite;
+    animation-play-state: paused;
+}
+
+.footer .img .music-img.play{
+    animation-play-state: running;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 .footer .music-name {

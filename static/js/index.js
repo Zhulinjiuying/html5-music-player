@@ -9,11 +9,13 @@ var router = function(event, page) {
 }
 
 var play = function(event) {
+    var img = e('.footer .img .music-img')
     if (event.target.className.indexOf('pause') == -1) {
         player.player.play()
     } else {
         player.player.pause()
     }
+    toggleClass(img, 'play')
     toggleClass(event.target, 'pause')
 }
 
@@ -94,7 +96,7 @@ var pageFunction = {
 var switchMusic = function(index) {
     let musicData = JSON.parse(localStorage.musicData)
     player.player.src = musicData[index].musicSrc
-    e('.footer .music-img').src = musicData[index].imgSrc
+    e('.footer .img .music-img').src = musicData[index].imgSrc
     e('.footer .music-name p').innerText = musicData[index].musicName
 }
 
