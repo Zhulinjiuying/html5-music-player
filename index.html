@@ -15,13 +15,13 @@
         </div>
         <div class="tab">
             <div class="item">
-                <a onclick="router(event, 'list')">我的列表</a>
+                <a onclick="router(event.target, 'list')">我的列表</a>
             </div>
             <div class="item">
-                <a onclick="router(event, 'find')">发现</a>
+                <a onclick="router(event.target, 'find')">发现</a>
             </div>
             <div class="item">
-                <a onclick="router(event, 'detail')">一个</a>
+                <a onclick="router(event.target, 'detail')">一个</a>
             </div>
         </div>
         <div class="main">
@@ -42,7 +42,7 @@
                 </div>
             </div>
             <div class="music-control">
-                <i class="play-icon" onclick="play(event)">
+                <i class="play-icon" onclick="play(event.target)">
                 </i>
             </div>
         </div>
