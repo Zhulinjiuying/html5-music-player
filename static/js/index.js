@@ -132,17 +132,17 @@ var initApp = function() {
     localStorage.musicData = JSON.stringify(musicData)
     player = new Player()
     switchMusic(0)
-    player.player.addEventListener("canplay", () => {
+    bindEvent(player.player, 'canplay',  () => {
         e('.end').innerText = player.transformTime(player.player.duration)
     })
-    player.player.addEventListener('play', () => {
+    bindEvent(player.player, 'play',  () => {
         e('.start').innerText =  player.transformTime(player.player.currentTime)
         setInterval(() => {
             e('.start').innerText = player.transformTime(player.player.currentTime)
             e('.now').style.width = (player.player.currentTime / player.player.duration).toFixed(3)*100 + '%'
           }, 1000);
     })
-    player.player.addEventListener('ended', () => {
+    bindEvent(player.player, 'ended', () => {
         toggleClass(e('.play-icon'), 'pause')
     })
     // 根据地址栏的参数来显示不同的页面
